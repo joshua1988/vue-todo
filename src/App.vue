@@ -10,5 +10,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+*{
+  box-sizing: border-box;
+}
 </style>

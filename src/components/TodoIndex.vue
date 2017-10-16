@@ -3,7 +3,10 @@
     <p>TodoIndex</p>
     <div class="todo-wrapper">
       <todo-input :handleInput="handleInput"></todo-input>
-      <todo-list :todos="todos" ></todo-list>
+      <todo-list
+        :todos="todos"
+        :handleCheck="handleCheck"
+      ></todo-list>
     </div>
   </div>
 </template>
@@ -18,14 +21,23 @@
   };
 
   const handleInput = (e) => {
-    const lastId = _.isEmpty(data.todos) ? 0 : _.last(data.todos).id;
-    const newTodo = {
-      id: lastId + 1,
-      text: e.target.value,
-    };
+    if (!_.isEmpty(e.target.value)) {
+      const lastId = _.isEmpty(data.todos) ? 0 : _.last(data.todos).id;
+      const newTodo = {
+        id: lastId + 1,
+        text: e.target.value,
+        done: false,
+      };
 
-    data.todos.push(newTodo);
-    e.target.value = '';
+      data.todos.push(newTodo);
+      e.target.value = '';
+    }
+  };
+
+  const handleCheck = (id) => {
+    const selectTodo = _.find(data.todos, todo => todo.id === id);
+    selectTodo.done = !selectTodo.done;
+    data.todos = Object.assign(data.todos, { ...data.todos, selectTodo });
   };
 
   export default {
@@ -37,6 +49,7 @@
     data: () => data,
     methods: {
       handleInput,
+      handleCheck,
     },
   };
 </script>
