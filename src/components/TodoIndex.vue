@@ -37,7 +37,6 @@
   const handleCheck = (id) => {
     const selectTodo = _.find(data.todos, todo => todo.id === id);
     selectTodo.done = !selectTodo.done;
-    data.todos = Object.assign(data.todos, { ...data.todos, selectTodo });
   };
 
   export default {
