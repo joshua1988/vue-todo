@@ -2,7 +2,7 @@
   <div class="todo-index">
     <p>TodoIndex</p>
     <div class="todo-wrapper">
-      <todo-input :handleInput="handleInput"></todo-input>
+      <todo-input :handleInput="handleInput" :addTodo="addTodo"></todo-input>
       <todo-list
         :todos="todos"
         :handleCheck="handleCheck"
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex';
   import _ from 'lodash';
   import TodoInput from './TodoInput';
   import TodoList from './TodoList';
@@ -38,7 +39,6 @@
     const selectTodo = _.find(data.todos, todo => todo.id === id);
     selectTodo.done = !selectTodo.done;
   };
-
   export default {
     name: 'TodoIndex',
     components: {
@@ -49,6 +49,13 @@
     methods: {
       handleInput,
       handleCheck,
+      ...mapActions([
+        'addTodo',
+      ]),
+    },
+    mounted() {
+      /* eslint-disable no-console */
+      console.log(this.$store.state.todo);
     },
   };
 </script>

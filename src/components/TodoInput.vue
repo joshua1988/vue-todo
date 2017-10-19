@@ -7,6 +7,7 @@
       placeholder="할 일을 입력해 보세요"
     />
     <p>입력하신 할 일은 다음과 같습니다: {{ todo }}</p>
+    <button @click="addTodo(todo)">버튼클릭</button>
   </div>
 </template>
 
@@ -17,7 +18,7 @@
 
   export default {
     name: 'TodoInput',
-    props: ['handleInput'],
+    props: ['handleInput', 'addTodo'],
     data: () => data,
   };
 </script>
