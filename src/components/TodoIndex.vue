@@ -17,15 +17,6 @@
   import TodoInput from './TodoInput';
   import TodoList from './TodoList';
 
-  const handleCheck = () => {
-    // const selectTodo = _.find(data.todos, todo => todo.id === id);
-    // selectTodo.done = !selectTodo.done;
-  };
-
-  const data = {
-
-  };
-
   export default {
     name: 'TodoIndex',
     components: {
@@ -36,10 +27,6 @@
       todoList: Array,
       addTodo: Function,
       checkTodo: Function,
-    },
-    data: () => data,
-    methods: {
-      handleCheck,
     },
   };
 </script>
