@@ -3,6 +3,7 @@
     <div
       v-for="option in options"
       :key="option"
+      :class="[{ active: option === activeFilter }]"
       @click="setFilter(option.toLowerCase())"
     >
       {{ option }}
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-const options = ['All', 'Complete', 'Progress'];
+const options = ['all', 'complete', 'progress'];
 
 const data = {
   options,
@@ -19,7 +20,14 @@ const data = {
 
 export default {
   name: 'TodoFilter',
-  props: ['setFilter'],
+  props: ['setFilter', 'activeFilter'],
   data: () => data,
 };
 </script>
+
+<style lang="scss" scoped>
+  .active {
+    color: red;
+  }
+</style>
+

@@ -2,12 +2,13 @@
   <div>
     <todo-filter
       :setFilter="setFilter"
+      :activeFilter="filter"
     ></todo-filter>
     <todo-item
       v-for="todo in filterTodos(todos)"
       :key="todo.id"
       :todo="todo"
-      :handleCheck="handleCheck"
+      :checkTodo="checkTodo"
     >
     </todo-item>
     {{ filteredTodos }}
@@ -47,7 +48,7 @@ export default {
     'todo-item': TodoItem,
     'todo-filter': TodoFilter,
   },
-  props: ['todos', 'handleCheck'],
+  props: ['todos', 'checkTodo'],
   data: () => data,
   methods: {
     filterTodos,

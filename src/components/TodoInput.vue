@@ -2,7 +2,7 @@
   <div>
     <input
       v-model="todo"
-      @keyup.enter="handleInput($event)"
+      @keyup.enter="addTodo($event)"
       type="text"
       placeholder="할 일을 입력해 보세요"
     />
@@ -18,7 +18,7 @@
 
   export default {
     name: 'TodoInput',
-    props: ['handleInput', 'addTodo'],
+    props: ['addTodo'],
     data: () => data,
   };
 </script>

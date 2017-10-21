@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import TodoIndex from '@/components/TodoIndex';
+import TodoContainer from '@/containers/TodoContainer';
 
 Vue.use(Router);
 
@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'TodoIndex',
-      component: TodoIndex,
+      name: 'TodoContainer',
+      component: TodoContainer,
     },
   ],
 });

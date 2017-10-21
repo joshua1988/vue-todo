@@ -2,60 +2,44 @@
   <div class="todo-index">
     <p>TodoIndex</p>
     <div class="todo-wrapper">
-      <todo-input :handleInput="handleInput" :addTodo="addTodo"></todo-input>
+      <todo-input
+        :addTodo="addTodo"
+      ></todo-input>
       <todo-list
-        :todos="todos"
-        :handleCheck="handleCheck"
+        :todos="todoList"
+        :checkTodo="checkTodo"
       ></todo-list>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-  import _ from 'lodash';
   import TodoInput from './TodoInput';
   import TodoList from './TodoList';
-  
+
+  const handleCheck = () => {
+    // const selectTodo = _.find(data.todos, todo => todo.id === id);
+    // selectTodo.done = !selectTodo.done;
+  };
+
   const data = {
-    todos: [],
+
   };
 
-  const handleInput = (e) => {
-    if (!_.isEmpty(e.target.value)) {
-      const lastId = _.isEmpty(data.todos) ? 0 : _.last(data.todos).id;
-      const newTodo = {
-        id: lastId + 1,
-        text: e.target.value,
-        done: false,
-      };
-
-      data.todos.push(newTodo);
-      e.target.value = '';
-    }
-  };
-
-  const handleCheck = (id) => {
-    const selectTodo = _.find(data.todos, todo => todo.id === id);
-    selectTodo.done = !selectTodo.done;
-  };
   export default {
     name: 'TodoIndex',
     components: {
       'todo-input': TodoInput,
       'todo-list': TodoList,
     },
+    props: {
+      todoList: Array,
+      addTodo: Function,
+      checkTodo: Function,
+    },
     data: () => data,
     methods: {
-      handleInput,
       handleCheck,
-      ...mapActions([
-        'addTodo',
-      ]),
-    },
-    mounted() {
-      /* eslint-disable no-console */
-      console.log(this.$store.state.todo);
     },
   };
 </script>

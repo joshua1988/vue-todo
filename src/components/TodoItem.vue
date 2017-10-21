@@ -2,7 +2,7 @@
   <div>
     <div
       :class="[{ done: todo.done }, 'btn-check']"
-      @click="handleCheck(todo.id)"
+      @click="checkTodo(todo.id)"
     />
     <div
       :class="[{ done: todo.done }, 'item']"
@@ -16,7 +16,7 @@
 
 export default {
   name: 'TodoItem',
-  props: ['todo', 'handleCheck'],
+  props: ['todo', 'checkTodo'],
 };
 </script>
 
