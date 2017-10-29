@@ -4,11 +4,13 @@
     <div class="todo-wrapper">
       <todo-input
         :addTodo="addTodo"
-      ></todo-input>
+      />
       <todo-list
-        :todos="todoList"
+        :todoList="todoList"
+        :isListLoading="isListLoading"
         :checkTodo="checkTodo"
-      ></todo-list>
+        :getTodoList="getTodoList"
+      />
     </div>
   </div>
 </template>
@@ -25,6 +27,8 @@
     },
     props: {
       todoList: Array,
+      isListLoading: Boolean,
+      getTodoList: Function,
       addTodo: Function,
       checkTodo: Function,
     },

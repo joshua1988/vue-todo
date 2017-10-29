@@ -1,27 +1,42 @@
 import _ from 'lodash';
+import Firebase from 'firebase';
+import * as todoApis from '@/api/todo';
+import getters from '../getters';
 import * as types from '../mutation-types';
-// import getters from '../getters/todo';
 
-export const addTodo = ({ commit }, e) => {
-  commit(types.ADD_TODO_LOADING);
+export const getTodoList = ({ commit }) => {
+  commit(types.GET_TODO_LIST);
+
+  const onSuccess = (todoList) => {
+    commit(types.GET_TODO_LIST_SUCCESS, todoList);
+  };
+
+  todoApis.getTodoList(onSuccess);
+};
+
+export const addTodo = (store, e) => {
+  store.commit(types.ADD_TODO_LOADING);
+  const lastTodo = _.last(store.state.todo.todoList);
   if (!_.isEmpty(e.target.value)) {
-    const lastId = _.isEmpty(this.todoList) ? 0 : _.last(this.tosoList).id;
     const newTodo = {
-      id: lastId + 1,
+      id: lastTodo ? lastTodo.id + 1 : 1,
       text: e.target.value,
       done: false,
+      timestamp: Firebase.database.ServerValue.TIMESTAMP,
     };
 
-    setTimeout(() => {
-      commit(types.ADD_TODO, newTodo);
-    }, 1000);
-
     e.target.value = '';
+
+    todoApis.addTodo(newTodo)
+      .then(store.commit(types.ADD_TODO));
   }
 };
 
-export const checkTodo = ({ commit, state }, id) => {
-  commit(types.SELECT_TODO, id);
+export const checkTodo = ({ commit }, id) => {
+  /* eslint-disable no-console */
+  console.log(getters);
+  getters.todoById(id);
+  // commit(types.SELECT_TODO, id);
 };
 
 export const removeTodo = ({ commit }, todo) => {

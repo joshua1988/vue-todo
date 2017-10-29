@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import todo from './modules/todo';
 import actions from './actions/index';
 import getters from './getters/index';
+import todo from './modules/todo';
+import ui from './modules/ui';
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
   getters,
   modules: {
     todo,
+    ui,
   },
-  strict: true,
+  // strict: true,
 });

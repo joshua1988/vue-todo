@@ -4,6 +4,8 @@
       :todoList="todoList"
       :addTodo="addTodo"
       :checkTodo="checkTodo"
+      :getTodoList="getTodoList"
+      :isListLoading="isListLoading"
     ></todo-index>
   </div>
 </template>
@@ -19,6 +21,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'getTodoList',
       'addTodo',
       'checkTodo',
     ]),
@@ -26,7 +29,9 @@ export default {
   computed: {
     ...mapGetters([
       'todoList',
+      'todoByIndex',
       'isWriting',
+      'isListLoading',
     ]),
   },
 };

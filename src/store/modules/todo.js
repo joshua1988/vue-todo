@@ -5,14 +5,23 @@ export default {
   state: {
     todoWriting: false,
     todoList: [],
+    isTodolistLoading: false,
   },
   mutations: {
+    [types.GET_TODO_LIST]: (state) => {
+      state.isTodolistLoading = true;
+    },
+
+    [types.GET_TODO_LIST_SUCCESS]: (state, todoList) => {
+      state.todoList = todoList;
+      state.isTodolistLoading = false;
+    },
+
     [types.ADD_TODO_LOADING]: (state) => {
       state.todoWriting = true;
     },
 
-    [types.ADD_TODO]: (state, todo) => {
-      state.todoList.push(todo);
+    [types.ADD_TODO]: (state) => {
       state.todoWriting = false;
     },
 

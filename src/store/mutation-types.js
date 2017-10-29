@@ -1,3 +1,6 @@
+// TODO ACTIONS
+export const GET_TODO_LIST = 'GET_TODO_LIST';
+export const GET_TODO_LIST_SUCCESS = 'GET_TODO_LIST_SUCCESS';
 export const ADD_TODO = 'ADD_TODO';
 export const ADD_TODO_LOADING = 'ADD_TODO__LOADING';
 export const REMOVE_TODO = 'REMOVE_TODO';
