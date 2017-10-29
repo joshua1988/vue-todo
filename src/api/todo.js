@@ -11,7 +11,3 @@ export const getTodoList = (resolve) => {
 };
 
 export const addTodo = todoObj => todoRef.push().set(todoObj);
-
-// export const checkTodo = (todoId) => {
-//   todoRef.update();
-// };
