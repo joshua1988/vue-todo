@@ -14,18 +14,16 @@ export const getTodoList = ({ commit }) => {
   todoApis.getTodoList(onSuccess);
 };
 
-export const addTodo = (store, e) => {
+export const addTodo = (store, todo) => {
   store.commit(types.ADD_TODO_LOADING);
   const lastTodo = _.last(store.state.todo.todoList);
-  if (!_.isEmpty(e.target.value)) {
+  if (!_.isEmpty(todo)) {
     const newTodo = {
       id: lastTodo ? lastTodo.id + 1 : 1,
-      text: e.target.value,
+      text: todo,
       done: false,
       timestamp: Firebase.database.ServerValue.TIMESTAMP,
     };
-
-    e.target.value = '';
 
     todoApis.addTodo(newTodo)
       .then(store.commit(types.ADD_TODO));
@@ -34,7 +32,7 @@ export const addTodo = (store, e) => {
 
 export const checkTodo = ({ commit }, id) => {
   /* eslint-disable no-console */
-  console.log(getters);
+  // console.log(getters);
   getters.todoById(id);
   // commit(types.SELECT_TODO, id);
 };

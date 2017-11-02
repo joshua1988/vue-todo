@@ -12,7 +12,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
-import TodoIndex from '../components/TodoIndex';
+import TodoIndex from '../components/Todo/TodoIndex';
 
 export default {
   name: 'TodoContainer',
